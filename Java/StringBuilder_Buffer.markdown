@@ -1,57 +1,75 @@
-두 클래스의 기능은 동일하지만 한 가지 차이점이 존재합니다. 바로 동기화(Synchronization)에서의 차이점인데요.
+# StringBuilder / StringBuffer
 
-StringBuilder는 동기화를 지원하지 않는 반면, StringBuffer는 동기화를 지원하여 멀티 스레드 환경에서도 안전하게 동작할 수 있습니다.
+>Java에서 String 객체는 한번 값이 할당되면 그 공간은 변하지 않지만, Stringbuilder나 StringBuffer 객체는 한번 값이 할당되더라도 다른 값이 할당되면 할당된 공간이 변하는 특성을 갖고 있다.
 
-그 이유는 StringBuffer는 메서드에서 synchronized 키워드를 사용하기 때문인데요.
+## 두 클래스의 공통점과 차이점
+공통점 - 가변(mutable)  
+차이점 - 동기화(Synchronization)  
 
-java에서 synchronized 키워드는 여러개의 스레드가 한 개의 자원에 접근할려고 할 때, 현재 데이터를 사용하고 있는 스레드를 제외하고 나머지 스레드들이 데이터에 접근할 수 없도록 막는 역할을 수행합니다.
+StringBuilder - 동기화를 지원하지 않는다.  
+StringBuffer - 동기화를 지원. 멀티 스레드 환경에서도 안전하게 동작할 수 있다.   
 
-예를 들어 멀티스레드 환경에서 A 스레드와 B스레드 모두 같은 StringBuffer 클래스 객체 sb의 append() 메서드를 사용하려고 하면, 다음과 같은 절차를 수행하게 된다.
-
-A 스레드 : sb의 append() 동기화 블록에 접근 및 실행
-B 스레드 : A 스레드 sb 의 append() 동기화 블록에 들어가지 못하고 block 상태가 됨.
-A 스레드 : sb의 append() 동기화 블록에서 탈출
-B 스레드 : block 에서 running 상태가 되며 sb 의 append() 동기화 블록에 접근 및 실행.
-StringBuilder 클래스 주석에서 동기화가 필요할 경우 StringBuffer을 추천한다는 문구를 확인할 수 있다.
-
-StringBuilder 를 사용 해야 할 때
-StringBuilder는 동기화를 지원하지 않는 반면, 속도면에선 StringBuffer 보다 성능이 좋습니다.
-
-그렇기 때문에 우리는 단일 스레드 환경 과 문자열의 추가, 수정, 삭제 등이 빈번히 발생하는 경우 StringBuilder를 사용하는 것이 성능면에서 유리할 것입니다.
-스레드가 안전한 프로그램 개발시 사용	
-
-5. StringBuffer 를 사용해야 할 때
-StringBuffer는 동기화를 지원하여 멀티 스레드 환경에서도 안전하게 동작할 수 있습니다.
-
-그렇기 때문에 우리는 멀티 스레드 환경 과 문자열의 추가, 수정, 삭제 등이 빈번히 발생하는 경우 StringBuffer를 사용하는 것이 성능면에서 유리할 것입니다.
-연산이 많을 경우 유리함
-
-. append() 메서드
-
-append() 메서드는 인수로 전달된 값을 문자열로 변환한 후, 해당 문자열의 마지막에 추가합니다. 이 메서드는 String 클래스의 concat() 메서드와 같은 결과를 반환하지만, 내부적인 처리 속도가 훨씬 빠릅니다.
-
-2. capacity() 메서드
-
-capacity() 메서드는 StringBuffer 인스턴스의 현재 버퍼 크기를 반환합니다.
-
-다음 예제는 capacity() 메서드를 이용하여 StringBuffer 인스턴스의 현재 버퍼 크기를 알아보는 예제입니다.
-위의 예제처럼 길이가 4인 문자열로 StringBuffer 인스턴스를 생성하면, 기본적으로 생성되는 여유 버퍼 크기인 16에 문자의 길이인 4를 더한 총 20개의 문자를 저장할 수 있는 버퍼가 생성되는 것을 확인할 수 있습니다.
+-> StringBuffer는 메서드에서 `synchronized` 키워드를 사용한다.  
+`synchronized`는 여러개의 스레드가 한 개의 자원에 접근할려고 할 때, 현재 데이터를 사용하고 있는 스레드를 제외하고 나머지 스레드들이 데이터에 접근할 수 없도록 막는 역할을 한다.
 
 
-3. delete() 메서드
+## StringBuilder를 사용 해야 할 때
 
-delete() 메서드는 전달된 인덱스에 해당하는 부분 문자열을 해당 문자열에서 제거합니다. 또한, deleteCharAt() 메소드를 사용하면 특정 위치의 문자 한 개만을 제거할 수도 있습니다.
+StringBuilder는 동기화를 지원하지 않지만 속도는 StringBuffer보다 좋다.  
 
-다음 예제는 delete() 메서드를 이용하여 해당 문자열의 특정 부분을 제거하는 예제입니다.
-delete() 메서드를 사용하여 해당 문자열에서 인덱스가 4인 위치의 문자부터 7인 위치의 문자까지를 삭제하고 있습니다. 이처럼 delete() 메서드는 첫 번째 매개변수로 전달된 인덱스부터 두 번째 매개변수로 전달된 인덱스 바로 앞의 문자까지를 삭제하는 메서드입니다.
+-> 단일 스레드 환경과 문자열의 추가, 수정, 삭제 등이 자주 발생하는 경우, StringBuilder를 사용하는 것이 유리하다.  
+-> 스레드가 안전한 프로그램 개발시 사용.  	
+
+## StringBuffer를 사용해야 할 때
+
+StringBuffer는 동기화를 지원하여 멀티 스레드 환경에서도 안전하게 동작할 수 있다.  
+
+-> 멀티 스레드 환경과 문자열의 추가, 수정, 삭제 등이 자주 발생하는 경우, StringBuffer를 사용하는 것이 유리하다.  
+-> 연산이 많을 경우 유리.  
+
+# Method
+
+|메서드|설명
+|:--:|:--:
+|append()|인수로 전달된 값을 문자열로 변환한 후, 해당 문자열의 마지막에 추가. String 클래스의 concat() 메서드와 같은 결과를 반환하지만, 처리 속도가 훨씬 빠르다.
+|capacity()|StringBuffer 인스턴스의 현재 버퍼 크기를 반환. 만약 길이가 4인 문자열이라면, 기본적으로 생성되는 여유 버퍼 크기 16에 문자의 길이인 4를 더한 총 20개의 문자를 저장할 수 있는 버퍼가 생성된다.
+|delete(index1,index2)|전달된 인덱스에 해당하는 부분 문자열을 해당 문자열에서 제거. index1부터 index2 바로 앞의 문자까지를 삭제. deleteCharAt() 메소드를 사용하면 특정 위치의 문자 한 개만을 제거할 수 있다.
+|insert()|인수로 전달된 값을 문자열로 변환한 후, 해당 문자열의 지정된 인덱스 위치에 추가. 이때 전달된 인덱스가 해당 문자열의 길이와 같으면, append() 메서드와 같은 결과를 반환.
 
 
-4. insert() 메서드
+# [StringBuffer 클래스의 API 문서](https://docs.oracle.com/javase/7/docs/api/java/lang/StringBuffer.html)
 
-insert() 메서드는 인수로 전달된 값을 문자열로 변환한 후, 해당 문자열의 지정된 인덱스 위치에 추가합니다. 이때 전달된 인덱스가 해당 문자열의 길이와 같으면, append() 메서드와 같은 결과를 반환합니다.
+|Type|Method|Description
+|:---:|:----:|:----:
+|StringBuffer|	append(boolean b)|boolean 인수 의 문자열 표현을 시퀀스에 추가합니다 .
+|StringBuffer	|append(char c)|char 이 시퀀스에 인수 의 문자열 표현을 추가합니다 .
+|StringBuffer|append(char[] str)|char배열 인수 의 문자열 표현을 이 시퀀스에 추가합니다 .
+|StringBuffer	|append(char[] str, int offset, int len)|char배열 인수 의 하위 배열의 문자열 표현을 이 시퀀스에 추가 합니다.
+|StringBuffer	|append(CharSequence s)|CharSequence이 시퀀스 에 지정된 항목 을 추가합니다.
+|StringBuffer|append(CharSequence s, int start, int end)|이 시퀀스 에 지정된 하위 시퀀스를 추가합니다 CharSequence.
+|StringBuffer|append(double d)|double 이 시퀀스에 인수 의 문자열 표현을 추가합니다 .
+|StringBuffer|append(float f)|float 이 시퀀스에 인수 의 문자열 표현을 추가합니다 .
+|StringBuffer	|append(int i)|int 이 시퀀스에 인수 의 문자열 표현을 추가합니다 .
+|StringBuffer	|append(long lng)|long 이 시퀀스에 인수 의 문자열 표현을 추가합니다 .
+|StringBuffer	|append(Object obj)|Object인수 의 문자열 표현을 추가합니다 .
+|StringBuffer	|append(String str)|지정된 문자열을 이 문자 시퀀스에 추가합니다.
+|StringBuffer	|append(StringBuffer sb)|지정된 StringBuffer 를 이 시퀀스에 추가합니다.
+|StringBuffer	|appendCodePoint(int codePoint)|codePoint 이 시퀀스에 인수 의 문자열 표현을 추가합니다 .
+|StringBuffer	|delete(int start, int end)|이 시퀀스의 부분 문자열에서 문자를 제거합니다.
+|StringBuffer	|deleteCharAt(int index)|char이 시퀀스의 지정된 위치에서 제거합니다 .
+|StringBuffer	|insert(int offset, boolean b)|boolean 인수 의 문자열 표현을 이 시퀀스에 삽입합니다 .
+|StringBuffer	|insert(int offset, char c)|char 인수 의 문자열 표현을 이 시퀀스에 삽입합니다 .
+|StringBuffer	|insert(int offset, char[] str)|char배열 인수 의 문자열 표현을 이 시퀀스에 삽입합니다 .
+|StringBuffer	|insert(int index, char[] str, int offset, int len)|str 배열 인수 의 하위 배열에 대한 문자열 표현을 이 시퀀스에 삽입합니다 .
+|StringBuffer	|insert(int dstOffset, CharSequence s)|지정된 CharSequence것을 이 시퀀스에 삽입합니다.
+|StringBuffer	|insert(int dstOffset, CharSequence s, int start, int end)|지정된 하위 CharSequence시퀀스를 이 시퀀스에 삽입합니다.
+|StringBuffer	|insert(int offset, double d)|double 인수 의 문자열 표현을 이 시퀀스에 삽입합니다 .
+|StringBuffer	|insert(int offset, float f)|float 인수 의 문자열 표현을 이 시퀀스에 삽입합니다 .
+|StringBuffer	|insert(int offset, int i)|int 두 번째 인수 의 문자열 표현을 이 시퀀스에 삽입합니다 .
+|StringBuffer	|insert(int offset, long l)|long 인수 의 문자열 표현을 이 시퀀스에 삽입합니다 .
+|StringBuffer	|insert(int offset, Object obj)|Object 인수 의 문자열 표현을 이 문자 시퀀스에 삽입합니다 .
+|StringBuffer	|insert(int offset, String str)|이 문자 시퀀스에 문자열을 삽입합니다.
+|StringBuffer	|replace(int start, int end, String str)|이 시퀀스의 하위 문자열에 있는 문자를 지정된 의 문자로 바꿉니다 String.
+|StringBuffer	|reverse()|이 문자 시퀀스가 시퀀스의 역순으로 대체되도록 합니다.
 
-다음 예제는 insert() 메서드를 이용하여 한 문자열 중간에 다른 문자열을 삽입하는 예제입니다
-위 예제의 세번째 줄에서는 insert() 메서드를 사용하여 해당 문자열에서 인덱스가 4인 위치부터 두 번째 매개변수로 전달된 문자열을 추가하고 있습니다.
-
-아래 참고자료를 통해 이 외의 다른 StringBuffer 메서드들에 대한 내용도 한번 살펴보시기를 권장드립니다.
 
