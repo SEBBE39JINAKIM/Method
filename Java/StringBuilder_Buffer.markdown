@@ -37,39 +37,4 @@ StringBuffer는 동기화를 지원하여 멀티 스레드 환경에서도 안�
 |insert()|인수로 전달된 값을 문자열로 변환한 후, 해당 문자열의 지정된 인덱스 위치에 추가. 이때 전달된 인덱스가 해당 문자열의 길이와 같으면, append() 메서드와 같은 결과를 반환.
 
 
-# [StringBuffer 클래스의 API 문서](https://docs.oracle.com/javase/7/docs/api/java/lang/StringBuffer.html)
-
-|Type|Method|Description
-|:---:|:----:|:----:
-|StringBuffer|	append(boolean b)|boolean 인수 의 문자열 표현을 시퀀스에 추가합니다 .
-|StringBuffer	|append(char c)|char 이 시퀀스에 인수 의 문자열 표현을 추가합니다 .
-|StringBuffer|append(char[] str)|char배열 인수 의 문자열 표현을 이 시퀀스에 추가합니다 .
-|StringBuffer	|append(char[] str, int offset, int len)|char배열 인수 의 하위 배열의 문자열 표현을 이 시퀀스에 추가 합니다.
-|StringBuffer	|append(CharSequence s)|CharSequence이 시퀀스 에 지정된 항목 을 추가합니다.
-|StringBuffer|append(CharSequence s, int start, int end)|이 시퀀스 에 지정된 하위 시퀀스를 추가합니다 CharSequence.
-|StringBuffer|append(double d)|double 이 시퀀스에 인수 의 문자열 표현을 추가합니다 .
-|StringBuffer|append(float f)|float 이 시퀀스에 인수 의 문자열 표현을 추가합니다 .
-|StringBuffer	|append(int i)|int 이 시퀀스에 인수 의 문자열 표현을 추가합니다 .
-|StringBuffer	|append(long lng)|long 이 시퀀스에 인수 의 문자열 표현을 추가합니다 .
-|StringBuffer	|append(Object obj)|Object인수 의 문자열 표현을 추가합니다 .
-|StringBuffer	|append(String str)|지정된 문자열을 이 문자 시퀀스에 추가합니다.
-|StringBuffer	|append(StringBuffer sb)|지정된 StringBuffer 를 이 시퀀스에 추가합니다.
-|StringBuffer	|appendCodePoint(int codePoint)|codePoint 이 시퀀스에 인수 의 문자열 표현을 추가합니다 .
-|StringBuffer	|delete(int start, int end)|이 시퀀스의 부분 문자열에서 문자를 제거합니다.
-|StringBuffer	|deleteCharAt(int index)|char이 시퀀스의 지정된 위치에서 제거합니다 .
-|StringBuffer	|insert(int offset, boolean b)|boolean 인수 의 문자열 표현을 이 시퀀스에 삽입합니다 .
-|StringBuffer	|insert(int offset, char c)|char 인수 의 문자열 표현을 이 시퀀스에 삽입합니다 .
-|StringBuffer	|insert(int offset, char[] str)|char배열 인수 의 문자열 표현을 이 시퀀스에 삽입합니다 .
-|StringBuffer	|insert(int index, char[] str, int offset, int len)|str 배열 인수 의 하위 배열에 대한 문자열 표현을 이 시퀀스에 삽입합니다 .
-|StringBuffer	|insert(int dstOffset, CharSequence s)|지정된 CharSequence것을 이 시퀀스에 삽입합니다.
-|StringBuffer	|insert(int dstOffset, CharSequence s, int start, int end)|지정된 하위 CharSequence시퀀스를 이 시퀀스에 삽입합니다.
-|StringBuffer	|insert(int offset, double d)|double 인수 의 문자열 표현을 이 시퀀스에 삽입합니다 .
-|StringBuffer	|insert(int offset, float f)|float 인수 의 문자열 표현을 이 시퀀스에 삽입합니다 .
-|StringBuffer	|insert(int offset, int i)|int 두 번째 인수 의 문자열 표현을 이 시퀀스에 삽입합니다 .
-|StringBuffer	|insert(int offset, long l)|long 인수 의 문자열 표현을 이 시퀀스에 삽입합니다 .
-|StringBuffer	|insert(int offset, Object obj)|Object 인수 의 문자열 표현을 이 문자 시퀀스에 삽입합니다 .
-|StringBuffer	|insert(int offset, String str)|이 문자 시퀀스에 문자열을 삽입합니다.
-|StringBuffer	|replace(int start, int end, String str)|이 시퀀스의 하위 문자열에 있는 문자를 지정된 의 문자로 바꿉니다 String.
-|StringBuffer	|reverse()|이 문자 시퀀스가 시퀀스의 역순으로 대체되도록 합니다.
-
-
+[StringBuffer 클래스의 API 문서](https://docs.oracle.com/javase/7/docs/api/java/lang/StringBuffer.html){:target="_blank"}
