@@ -37,4 +37,4 @@ StringBuffer는 동기화를 지원하여 멀티 스레드 환경에서도 안�
 |insert()|인수로 전달된 값을 문자열로 변환한 후, 해당 문자열의 지정된 인덱스 위치에 추가. 이때 전달된 인덱스가 해당 문자열의 길이와 같으면, append() 메서드와 같은 결과를 반환.
 
 
-[StringBuffer 클래스의 API 문서](https://docs.oracle.com/javase/7/docs/api/java/lang/StringBuffer.html){:target="_blank"}
+[StringBuffer 클래스의 API 문서](https://docs.oracle.com/javase/7/docs/api/java/lang/StringBuffer.html) {:target="_blank"}
